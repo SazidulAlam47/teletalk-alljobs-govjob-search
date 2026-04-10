@@ -92,15 +92,9 @@ and uses `govtJobs` from the response.
 
 ### Filtering behavior
 
-For each job, a searchable text blob is created from:
+For each job, filtering is currently applied against only `job_title`.
 
-- `job_title`
-- `job_title_bn`
-- `org_name`
-- `org_name_bn`
-- `vacancy`
-
-If any excluded keyword appears in that combined text (case-insensitive), the job is removed.
+If any excluded keyword appears in `job_title` (case-insensitive), the job is removed.
 
 ## Script Output
 

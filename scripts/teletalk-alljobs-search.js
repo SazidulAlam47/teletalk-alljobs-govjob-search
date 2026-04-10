@@ -34,13 +34,6 @@ function requestJson(url) {
   });
 }
 
-function searchableText(job) {
-  return [job.job_title, job.job_title_bn, job.org_name, job.org_name_bn, job.vacancy]
-    .filter(Boolean)
-    .join(' ')
-    .toLowerCase();
-}
-
 function formatDeadline(value) {
   if (!value) return value;
   const d = new Date(value);
@@ -70,8 +63,8 @@ function formatDeadline(value) {
   const jobs = Array.isArray(res?.govtJobs) ? res.govtJobs : [];
 
   const filtered = jobs.filter(job => {
-    const text = searchableText(job);
-    return !excluded.some(word => text.includes(word.toLowerCase()));
+    const title = String(job.job_title || '').toLowerCase();
+    return !excluded.some(word => title.includes(word.toLowerCase()));
   }).map(job => ({
     job_primary_id: job.job_primary_id,
     job_title: job.job_title,
