@@ -14,7 +14,7 @@ Use this skill to search and shortlist government jobs from the Teletalk AllJobs
    - excluded keywords, such as `Sub Assistant`, `Diploma`
 2. Save the preferences in `data/preference.json`.
 3. Run the search script with the keyword.
-4. Filter out any job whose fields contain an excluded keyword.
+4. Filter out any job whose `job_title` contains an excluded keyword.
 5. Show the remaining jobs with only these fields:
    - `job_title`
    - `job_title_bn`
@@ -50,12 +50,7 @@ Search using this endpoint:
 
 Use the response’s `govtJobs` array.
 
-Filter out a job when any excluded keyword matches, case-insensitive, against the job’s combined searchable text, including:
-- `job_title`
-- `job_title_bn`
-- `org_name`
-- `org_name_bn`
-- `vacancy`
+Filter out a job when any excluded keyword matches, case-insensitive, against `job_title` only.
 
 Treat obvious role modifiers like `Sub Assistant` and `Diploma` as excludes when the user asks for them.
 
