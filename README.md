@@ -133,41 +133,6 @@ node .\teletalk-alljobs-search.js
 4. Show compact job results.
 5. If user confirms they applied, append `job_primary_id` to `data/appliedJobIds.json` (no duplicates).
 
-## Troubleshooting
-
-### Error: `Missing preference.keyboard`
-
-Cause:
-
-- `data/preference.json` has empty or missing `keyboard`.
-
-Fix:
-
-- Set a non-empty string in `keyboard`.
-
-### Empty result list
-
-Possible causes:
-
-- keyword has no matching jobs
-- excluded keywords are too broad
-
-Fix:
-
-- try a broader keyword
-- reduce exclusions
-
-### Network/API issues
-
-Cause:
-
-- internet/DNS/TLS issue or remote API temporary problem
-
-Fix:
-
-- retry later
-- verify internet connection
-
 ## Notes
 
 - This skill is focused only on Teletalk government jobs.
