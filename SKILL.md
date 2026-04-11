@@ -20,13 +20,14 @@ Use this skill to search and shortlist government jobs from the Teletalk AllJobs
    - `org_name`
    - `org_name_bn`
    - `vacancy`
-   - `deadline_date`
+   - `deadline_date` (show date and BST, Bangladesh Standard Time when possible)
    - `application_site_url`
+   Skip any jobs whose deadline has already passed.
 5. If the user confirms they applied, save the `job_primary_id` in `data/appliedJobIds.json`.
 
 ## Data files
 
-Store skill data in:
+Store skill data inside this skill folder in:
 - `data/preference.json`
 - `data/appliedJobIds.json`
 
@@ -49,13 +50,14 @@ When the user says they applied:
 
 ## Script entry point
 
-Use:
+Use the script inside this skill folder:
 - `scripts/teletalk-alljobs-search.js`
 
 The script should:
 - read `data/preference.json`
 - call the Teletalk API
 - filter excluded keywords
+- skip jobs whose deadline has already passed
 - print the compact job list as JSON
 
 ## Notes

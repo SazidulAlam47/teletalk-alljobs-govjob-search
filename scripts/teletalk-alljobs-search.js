@@ -38,15 +38,17 @@ function formatDeadline(value) {
   if (!value) return value;
   const d = new Date(value);
   if (Number.isNaN(d.getTime())) return value;
-  return d.toLocaleString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
+  return new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Asia/Dhaka',
-  }) + ' BST';
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    hour12: true,
+  }).format(d);
+}
+
+function isOverdue(value) {
+  const d = new Date(value);
+  return !Number.isNaN(d.getTime()) && d.getTime() < Date.now();
 }
 
 (async () => {
@@ -64,7 +66,7 @@ function formatDeadline(value) {
 
   const filtered = jobs.filter(job => {
     const title = String(job.job_title || '').toLowerCase();
-    return !excluded.some(word => title.includes(word.toLowerCase()));
+    return !excluded.some(word => title.includes(word.toLowerCase())) && !isOverdue(job.deadline_date);
   }).map(job => ({
     job_primary_id: job.job_primary_id,
     job_title: job.job_title,
